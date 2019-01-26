@@ -2,39 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBase : MonoBehaviour
+public class EnemyBase : DestroyableObject
 {
-    [SerializeField] private int health;
     [SerializeField] private float movementSpeed = 5f;
-    [SerializeField] private GameObject lockedLabel;
 
-    public int Health { get { return health; } }
-
+    private PolyNavAgent agent;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        SetLockedLabelVisible(false);
+        base.Start();
+        agent = GetComponent<PolyNavAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Random.insideUnitCircle * movementSpeed * Time.deltaTime);
+        agent.SetDestination(Player.Instance.transform.position);
     }
 
-    public void Damage()
+    protected override void OnHealthDepleted()
     {
-        health -= 1;
-
-        if (health <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    public void SetLockedLabelVisible(bool isVisible)
-    {
-        lockedLabel.SetActive(isVisible);
+        Destroy(gameObject);
     }
 }

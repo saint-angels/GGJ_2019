@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Player : MonoBehaviour
+public class Player : SingletonComponent<Player>
 {
     struct Target
     {
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
 
     private const int maxLocks = 5;
     private int lockNumber = 0;
-    private Dictionary<EnemyBase, Target> enemyLocks = new Dictionary<EnemyBase, Target>();
+    private Dictionary<DestroyableObject, Target> enemyLocks = new Dictionary<DestroyableObject, Target>();
     private bool shooting;
 
 
@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         LockNumber = 0;
+        SetAimingState(false);
     }
 
     // Update is called once per frame
@@ -94,28 +95,37 @@ public class Player : MonoBehaviour
     {
         if (!shooting && LockNumber < maxLocks)
         {
-            var enemy = collision.GetComponent<EnemyBase>();
-            if (enemy != null)
+            var dObject = collision.GetComponentInParent<DestroyableObject>();
+            if (dObject != null)
             {
-                if (enemyLocks.ContainsKey(enemy))
+                if (enemyLocks.ContainsKey(dObject))
                 {
-                    bool hpLeft = enemy.Health > enemyLocks[enemy].shots;
-                    bool lastLockLongAgo = Time.time > enemyLockCooldown + enemyLocks[enemy].lastLocktime;
+                    bool hpLeft = dObject.Health > enemyLocks[dObject].shots;
+                    bool lastLockLongAgo = Time.time > enemyLockCooldown + enemyLocks[dObject].lastLocktime;
                     if (hpLeft && lastLockLongAgo)
                     {
-                        Target updatedTarget = new Target(enemyLocks[enemy].shots + 1, Time.time);
-                        enemyLocks[enemy] = updatedTarget;
+                        Target updatedTarget = new Target(enemyLocks[dObject].shots + 1, Time.time);
+                        enemyLocks[dObject] = updatedTarget;
                         LockNumber++;
                     }
                 }
                 else
                 {
                     Target newTarget = new Target(1, Time.time);
-                    enemyLocks.Add(enemy, newTarget);
-                    enemy.SetLockedLabelVisible(true);
+                    enemyLocks.Add(dObject, newTarget);
+                    dObject.SetLockedLabelVisible(true);
                     LockNumber++;
                 }
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        var enemy = collision.collider.GetComponent<EnemyBase>();
+        if (enemy!= null)
+        {
+            print("Game over");
         }
     }
 
@@ -125,7 +135,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         foreach (var enemyLockPair in enemyLocks)
         {
-            EnemyBase enemy = enemyLockPair.Key;
+            DestroyableObject enemy = enemyLockPair.Key;
             for (int shotIdx = 0; shotIdx < enemyLockPair.Value.shots; shotIdx++)
             {
                 if (enemy != null)
@@ -154,7 +164,8 @@ public class Player : MonoBehaviour
 
     private void SetAimingState(bool isAiming)
     {
+        lockNumberLabel.enabled = isAiming;
         crosshairs.SetActive(isAiming);
-        body.SetActive(isAiming == false);
+        body.SetActive(!isAiming);
     }
 }

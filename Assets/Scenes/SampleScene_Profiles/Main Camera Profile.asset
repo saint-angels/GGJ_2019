@@ -18,14 +18,14 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   colored:
-    overrideState: 1
+    overrideState: 0
     value: 0
   intensity:
     overrideState: 1
-    value: 0.301
+    value: 0.135
   size:
     overrideState: 1
-    value: 0.486
+    value: 1.433
   lumContrib:
     overrideState: 0
     value: 0.8
