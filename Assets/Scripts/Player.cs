@@ -23,6 +23,16 @@ public class Player : SingletonComponent<Player>
     [SerializeField] private GameObject body;
     [SerializeField] private GameObject crosshairs;
     [SerializeField] private PlayerBulletTrail bulletTrailPrefab;
+    [SerializeField] private Animator animator;
+    [SerializeField] private float rechargeSpeed = 10f;
+    [SerializeField] private float drainSpeed = 20f;
+
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Color normalColor;
+    [SerializeField] private Color chargedColor;
+
+    private float chargeLevel = 100;
+    private bool aiming = false;
 
     public Vector2 Position2 { get { return new Vector2(transform.position.x, transform.position.y); } }
 
@@ -50,11 +60,17 @@ public class Player : SingletonComponent<Player>
         }
     }
 
-    private const int maxLocks = 5;
+    private const int maxLocks = 6;
     private int lockNumber = 0;
     private Dictionary<DestroyableObject, Target> enemyLocks = new Dictionary<DestroyableObject, Target>();
     private bool shooting;
 
+
+    public void Die()
+    {
+        RoomShell.Instance.Restart();
+        chargeLevel = 100f;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +89,11 @@ public class Player : SingletonComponent<Player>
         {
             Vector3 translation = new Vector3(translationX, translationY, 0);
             transform.Translate(translation.normalized * Time.deltaTime * movementSpeed);
+            animator.SetBool("moving", true);
+        }
+        else
+        {
+            animator.SetBool("moving", false);
         }
         float clampedX = Mathf.Clamp(transform.position.x, -4.2f, 4.2f);
         float clampedY = Mathf.Clamp(transform.position.y, -4.2f, 4.2f);
@@ -82,7 +103,7 @@ public class Player : SingletonComponent<Player>
         //Aiming
         if (Input.GetButtonDown("Aim"))
         {
-            if (!shooting)
+            if (!shooting && chargeLevel == 100)
             {
                 SetAimingState(true);
             }
@@ -94,7 +115,25 @@ public class Player : SingletonComponent<Player>
                 SetAimingState(false);
                 StartCoroutine(Shoot());
             }
-        }        
+        }
+
+        if (aiming)
+        {
+            chargeLevel -= drainSpeed * Time.deltaTime;
+            if (chargeLevel <= 0 && !shooting)
+            {
+                SetAimingState(false);
+                StartCoroutine(Shoot());
+            }
+        }
+        else if (!aiming && !shooting)
+        {
+            chargeLevel += rechargeSpeed * Time.deltaTime;
+        }
+        chargeLevel = chargeLevel < 0f ? 0f : chargeLevel;
+        chargeLevel = chargeLevel > 100f ? 100f : chargeLevel;
+        spriteRenderer.color = Mathf.Approximately(chargeLevel, 100f) ? chargedColor : normalColor;
+        RoomShell.Instance.SetChargeLevel(chargeLevel);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -131,8 +170,17 @@ public class Player : SingletonComponent<Player>
         var enemy = collision.collider.GetComponent<EnemyBase>();
         if (enemy!= null)
         {
-            print("Game over");
+            Die();
         }
+        else
+        {
+            var bullet = collision.collider.GetComponent<EnemyBullet>();
+            if (bullet != null)
+            {
+                Die();
+            }
+        }
+
     }
 
     IEnumerator Shoot()
@@ -150,15 +198,16 @@ public class Player : SingletonComponent<Player>
                     newTrailPrefab.Init(enemy.transform);
 
                     enemy.Damage();
-                }
-                bool lastShot = shotIdx + 1 == enemyLockPair.Value.shots;
-                if (lastShot)
-                {
-                    enemy.SetLockedLabelVisible(false);
-                }
-                else
-                {
-                    yield return new WaitForSeconds(.05f);
+
+                    bool lastShot = shotIdx + 1 == enemyLockPair.Value.shots;
+                    if (lastShot)
+                    {
+                        enemy.SetLockedLabelVisible(false);
+                    }
+                    else
+                    {
+                        yield return new WaitForSeconds(.05f);
+                    }
                 }
             }
 
@@ -175,5 +224,6 @@ public class Player : SingletonComponent<Player>
         lockNumberLabel.enabled = isAiming;
         crosshairs.SetActive(isAiming);
         body.SetActive(!isAiming);
+        aiming = isAiming;
     }
 }

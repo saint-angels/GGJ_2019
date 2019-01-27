@@ -348,6 +348,7 @@ GameObject:
   - component: {fileID: 7135862549973682758}
   - component: {fileID: 9081161952151139538}
   - component: {fileID: 2977089063538008348}
+  - component: {fileID: 2214619860544294798}
   m_Layer: 0
   m_Name: Tomato
   m_TagString: Untagged
@@ -458,9 +459,26 @@ MonoBehaviour:
   health: 1
   lockedLabel: {fileID: 3393403099472950304}
   spriteRenderer: {fileID: 4285439742756668932}
+  targetPositionSelectionCooldown: 0.5
   explosionRadius: 3
   explosionDuration: 0.5
   explosionPart: {fileID: 8956998199096586388}
+--- !u!114 &2214619860544294798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6846728932648919631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shapeType: 1
+  extraOffset: -0.5
+  invertPolygon: 0
 --- !u!1 &7102085779134038582
 GameObject:
   m_ObjectHideFlags: 0

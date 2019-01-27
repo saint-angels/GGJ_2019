@@ -24,6 +24,11 @@ public class PlayerBulletTrail : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (target == null)
+        {
+            return;
+        }
+
         if (halfway == false)
         {
             var ba = target.position - transform.position;

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 774ae9593af0b104eae12816d1658d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 6
   lockedLabel: {fileID: 59320443462800931}
   spriteRenderer: {fileID: 59320444836565162}
   lockedState: {fileID: 59320443873109702}

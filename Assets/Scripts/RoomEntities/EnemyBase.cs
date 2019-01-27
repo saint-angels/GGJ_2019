@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class EnemyBase : DestroyableObject
 {
+    public event Action OnDeath = () => { };
+
     [SerializeField] private float targetPositionSelectionCooldown = .5f;
 
     protected PolyNavAgent agent;
@@ -26,4 +29,10 @@ public abstract class EnemyBase : DestroyableObject
             yield return new WaitForSeconds(targetPositionSelectionCooldown);
         }
     }
+
+    protected override void OnHealthDepleted()
+    {
+        OnDeath();
+    }
+
 }

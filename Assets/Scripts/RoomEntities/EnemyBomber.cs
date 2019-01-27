@@ -16,6 +16,8 @@ public class EnemyBomber : EnemyBase
 
     protected override void OnHealthDepleted()
     {
+        base.OnHealthDepleted();
+
         //Blow up
         explosionPart.gameObject.SetActive(true);
         explosionPart.localScale = Vector3.one * explosionRadius;
@@ -25,7 +27,7 @@ public class EnemyBomber : EnemyBase
             var player = hit.collider.GetComponent<Player>();
             if (player != null)
             {
-                print("Got player");
+                
             }
         }
         Destroy(gameObject, explosionDuration);
