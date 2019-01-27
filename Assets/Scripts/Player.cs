@@ -57,6 +57,11 @@ public class Player : SingletonComponent<Player>
                     lockNumberLabel.text = lockNumber.ToString();
                     break;
             }
+
+            if (lockNumber != 0)
+            {
+                AudioManager.Instance.PlayClip(true, lockNumber);
+            }
         }
     }
 
@@ -138,7 +143,7 @@ public class Player : SingletonComponent<Player>
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!shooting && LockNumber < maxLocks)
+        if (!shooting && LockNumber <= maxLocks)
         {
             var dObject = collision.GetComponentInParent<DestroyableObject>();
             if (dObject != null)
@@ -187,6 +192,7 @@ public class Player : SingletonComponent<Player>
     {
         shooting = true;
         yield return new WaitForSeconds(.1f);
+        int shotTotal = 0;
         foreach (var enemyLockPair in enemyLocks)
         {
             DestroyableObject enemy = enemyLockPair.Key;
@@ -198,6 +204,7 @@ public class Player : SingletonComponent<Player>
                     newTrailPrefab.Init(enemy.transform);
 
                     enemy.Damage();
+                    AudioManager.Instance.PlayClip(false, shotTotal);
 
                     bool lastShot = shotIdx + 1 == enemyLockPair.Value.shots;
                     if (lastShot)
@@ -208,6 +215,7 @@ public class Player : SingletonComponent<Player>
                     {
                         yield return new WaitForSeconds(.05f);
                     }
+                    shotTotal++;
                 }
             }
 
