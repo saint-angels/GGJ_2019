@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AudioManager : SingletonComponent<AudioManager>
 {
-    [SerializeField] private float pitchStep = 1f;
     [SerializeField] private AudioClip lockedClip;
     [SerializeField] private AudioClip shotClip;
+    [SerializeField] private float defaultPitch = .5f;
 
     private AudioSource source;
 
@@ -18,7 +18,7 @@ public class AudioManager : SingletonComponent<AudioManager>
     public void PlayClip(bool locked, int enemyIndex)
     {
         var clip = locked ? lockedClip : shotClip;
-        source.pitch = 1f + .05f * enemyIndex;
+        source.pitch = defaultPitch + .05f * enemyIndex;
         source.PlayOneShot(clip);
     }
 
