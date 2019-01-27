@@ -28,6 +28,7 @@ public class Player : SingletonComponent<Player>
     [SerializeField] private float drainSpeed = 20f;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private GameObject particles;
     [SerializeField] private Color normalColor;
     [SerializeField] private Color chargedColor;
 
@@ -73,20 +74,30 @@ public class Player : SingletonComponent<Player>
 
     public void Die()
     {
-        RoomShell.Instance.Restart();
-        chargeLevel = 100f;
+        spriteRenderer.gameObject.SetActive(false);
+        particles.gameObject.SetActive(true);
+
+        RoomShell.Instance.GameOver();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void Init()
     {
         LockNumber = 0;
         SetAimingState(false);
+        chargeLevel = 100f;
+        spriteRenderer.gameObject.SetActive(true);
+        particles.gameObject.SetActive(false);
     }
+
 
     // Update is called once per frame
     void Update()
     {
+        if (RoomShell.Instance.gameOver)
+        {
+            return;
+        }
+
         //Movement
         float translationY = Input.GetAxisRaw("Vertical");
         float translationX = Input.GetAxisRaw("Horizontal");
@@ -157,6 +168,7 @@ public class Player : SingletonComponent<Player>
                         Target updatedTarget = new Target(enemyLocks[dObject].shots + 1, Time.time);
                         enemyLocks[dObject] = updatedTarget;
                         LockNumber++;
+                        transform.position += Vector3.right * Random.Range(-.1f, 1f) * Time.deltaTime;
                     }
                 }
                 else
@@ -165,6 +177,7 @@ public class Player : SingletonComponent<Player>
                     enemyLocks.Add(dObject, newTarget);
                     dObject.SetLockedLabelVisible(true);
                     LockNumber++;
+                    transform.position += Vector3.right * Random.Range(-.1f, 1f) * Time.deltaTime;
                 }
             }
         }

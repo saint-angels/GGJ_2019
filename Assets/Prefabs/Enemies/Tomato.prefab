@@ -414,11 +414,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _map: {fileID: 0}
-  maxSpeed: 3.5
+  maxSpeed: 4
   mass: 20
   stoppingDistance: 0.1
   slowingDistance: 1
-  accelerationRate: 2
+  accelerationRate: 4
   decelerationRate: 2
   lookAheadDistance: 0.41
   avoidRadius: 0
@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4dc592cb026b5d41a28b78a70c522a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 2
   lockedLabel: {fileID: 3393403099472950304}
   spriteRenderer: {fileID: 4285439742756668932}
   targetPositionSelectionCooldown: 0.5

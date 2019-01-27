@@ -36,5 +36,11 @@ public class EnemyBomber : EnemyBase
     protected override void ChooseTargetPosition()
     {
         agent.SetDestination(Player.Instance.Position2);
+        if (agent.hasPath == false)
+        {
+            var randomOffset = Random.insideUnitCircle;
+            var randomOffset3 = new Vector3(randomOffset.x, randomOffset.y, 0);
+            agent.SetDestination(transform.position + randomOffset3);
+        }
     }
 }

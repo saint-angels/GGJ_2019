@@ -13,6 +13,14 @@ public class EnemyShooter : EnemyBase
         var ba = (transform.position - Player.Instance.transform.position).normalized;
         Vector3 destination = Player.Instance.transform.position + ba * targetPlayerDistance;
         agent.SetDestination(destination);
+
+
+        if (agent.hasPath == false)
+        {
+            var randomOffset = Random.insideUnitCircle;
+            var randomOffset3 = new Vector3(randomOffset.x, randomOffset.y, 0);
+            agent.SetDestination(transform.position + randomOffset3);
+        }
     }
 
     protected override void Start()
@@ -43,10 +51,6 @@ public class EnemyShooter : EnemyBase
         }
     }
 
-    private void Update()
-    {
-        
-    }
 
     protected override void OnHealthDepleted()
     {

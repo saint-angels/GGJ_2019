@@ -35,4 +35,10 @@ public abstract class EnemyBase : DestroyableObject
         OnDeath();
     }
 
+    public void Stop()
+    {
+        StopAllCoroutines();
+        agent.enabled = false;
+    }
+
 }
