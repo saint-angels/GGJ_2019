@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 59320443395450078}
   - component: {fileID: 59320443395450073}
+  - component: {fileID: 8454524234534152905}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -50,6 +51,20 @@ MonoBehaviour:
   lockedLabel: {fileID: 59320443462800931}
   lockedState: {fileID: 59320443873109702}
   unlockedState: {fileID: 59320443833599447}
+--- !u!114 &8454524234534152905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59320443395450079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 76e34b8f28a82cf439eac02d524aa648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTransform: {fileID: 59320444836565163}
 --- !u!1 &59320443462800931
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +416,7 @@ GameObject:
   - component: {fileID: 3710451441326638751}
   - component: {fileID: 3158029777479520936}
   - component: {fileID: 6728845685515851117}
+  - component: {fileID: 2698383092635149017}
   m_Layer: 0
   m_Name: OpenState
   m_TagString: Untagged
@@ -486,6 +502,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2698383092635149017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59320443833599447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 33fb8c12abc430c49bb83b81f578f0f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &59320443873109702
 GameObject:
   m_ObjectHideFlags: 0

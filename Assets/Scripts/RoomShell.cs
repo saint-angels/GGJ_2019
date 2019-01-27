@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class RoomShell : SingletonComponent<RoomShell>
 {
-    [SerializeField] private GameObject[] roomPrefabs;
+    [SerializeField] private Room[] roomPrefabs;
 
-    GameObject currentRoom;
+    Room currentRoom;
 
     public void GenerateNewRoom()
     {
         if (currentRoom != null)
         {
-            Destroy(currentRoom);
+            Destroy(currentRoom.gameObject);
         }
 
         var randomRoomPrefab = roomPrefabs[Random.Range(0, roomPrefabs.Length)];
         currentRoom = Instantiate(randomRoomPrefab, transform);
+        Player.Instance.transform.position = currentRoom.playerSpawnPoint.position;
     }
 
     void Start()

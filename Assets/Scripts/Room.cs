@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public int Id { get; private set; }
-
-    private int gridSize = 1;
+    public Transform playerSpawnPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -18,55 +16,5 @@ public class Room : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void Init(int id)
-    {
-        this.Id = id;
-    }
-
-    public bool Overlapping(List<Room> rooms)
-    {
-        foreach (var otherRoom in rooms)
-        {
-            if (otherRoom.Id == Id)
-            {
-                continue;
-            }
-
-            bool overlapping = otherRoom.transform.position == transform.position;
-            bool idCheck = Id > otherRoom.Id;
-            if (overlapping && idCheck)
-            {
-                bool moveX = Random.value > .5f;
-                float translateAmount = gridSize * (Random.value > .5f ? 1f : -1f);
-                Vector3 translation;
-                if (moveX)
-                {
-                    translation = new Vector3(translateAmount, 0, 0);
-                }
-                else
-                {
-                    translation = new Vector3(0, translateAmount, 0);
-                }
-                transform.Translate(translation);
-            }
-        }
-
-
-        foreach (var otherRoom in rooms)
-        {
-            if (otherRoom.Id == Id)
-            {
-                continue;
-            }
-
-            bool overlapping = otherRoom.transform.position == transform.position;
-            if (overlapping)
-            {
-                return true;
-            }
-        }
-        return false;
     }
 }

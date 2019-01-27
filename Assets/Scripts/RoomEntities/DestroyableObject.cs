@@ -9,9 +9,14 @@ public abstract class DestroyableObject : MonoBehaviour
 
     public int Health { get { return health; } }
 
+    private const float damageShakeAmount = .1f;
+    private bool isDead = false;
+    private Shaker shaker;
+
     protected virtual void Start()
     {
         SetLockedLabelVisible(false);
+        shaker = GetComponent<Shaker>();
     }
 
     public virtual void SetLockedLabelVisible(bool isVisible)
@@ -21,11 +26,16 @@ public abstract class DestroyableObject : MonoBehaviour
 
     public virtual void Damage()
     {
-        health -= 1;
-
-        if (health <= 0)
+        if (isDead == false)
         {
-            OnHealthDepleted();
+            health -= 1;
+            shaker.Shake(.15f, damageShakeAmount);
+
+            if (health <= 0)
+            {
+                isDead = true;
+                Invoke("OnHealthDepleted", shaker.ShakeDuration);
+            }
         }
     }
 

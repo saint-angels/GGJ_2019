@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2622463370811774902}
   - component: {fileID: 2622463370811774857}
   - component: {fileID: 2622463370811774900}
+  - component: {fileID: 8089662062276273923}
   m_Layer: 0
   m_Name: EnemyTest
   m_TagString: Untagged
@@ -48,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cef23d40d2bec7141aab91f00023c7b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
+  health: 20
   lockedLabel: {fileID: 2622463371684391008}
   movementSpeed: 5
 --- !u!61 &2622463370811774857
@@ -106,6 +107,22 @@ MonoBehaviour:
   restrict: 1
   closerPointOnInvalid: 1
   debugPath: 1
+--- !u!114 &8089662062276273923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2622463370811774856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 76e34b8f28a82cf439eac02d524aa648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTransform: {fileID: 2622463371280264437}
+  shakeDuration: 0.5
+  decreaseFactor: 2
 --- !u!1 &2622463371280264436
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +134,7 @@ GameObject:
   - component: {fileID: 2622463371280264437}
   - component: {fileID: 2622463371280264434}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

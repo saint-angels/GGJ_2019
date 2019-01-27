@@ -33,7 +33,7 @@ public class Door : DestroyableObject
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var player = collision.GetComponent<Player>();
+        var player = collision.GetComponentInParent<Player>();
         if (player != null)
         {
             RoomShell.Instance.GenerateNewRoom();
