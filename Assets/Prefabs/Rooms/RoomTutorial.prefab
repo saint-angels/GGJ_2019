@@ -71,7 +71,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0.5
+  m_padding: 0
   m_canvasRenderer: {fileID: 7796865391914975661}
   m_TextComponent: {fileID: 5923980816544316776}
   m_materialReferenceIndex: 1
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0.5
+  m_padding: 0
   m_canvasRenderer: {fileID: 6510803277476492743}
   m_TextComponent: {fileID: 6264894773351103870}
   m_materialReferenceIndex: 1
@@ -1124,7 +1124,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0.5
+  m_padding: 0
   m_canvasRenderer: {fileID: 5794354044728709183}
   m_TextComponent: {fileID: 5829562433572807219}
   m_materialReferenceIndex: 1

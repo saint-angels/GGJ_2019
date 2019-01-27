@@ -6649,7 +6649,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 5091997223793568919, guid: f06fe890b16cedf458408e0fad6047f8, type: 3}
   - {fileID: 2977089063538008348, guid: 0e5f3e225cb0bc8439aa6af301150fb4, type: 3}
-  showTutorial: 0
+  showTutorial: 1
   chargeLevel: {fileID: 708727454}
   gameOverUI: {fileID: 1144642325}
   testSpecificRoom: 0
