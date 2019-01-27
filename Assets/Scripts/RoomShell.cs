@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RoomShell : SingletonComponent<RoomShell>
 {
+    public Color attackableColor;
+
     [SerializeField] private Room[] roomPrefabs;
 
     Room currentRoom;

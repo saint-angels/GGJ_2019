@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   lockedLabel: {fileID: 59320443462800931}
+  spriteRenderer: {fileID: 59320444836565162}
   lockedState: {fileID: 59320443873109702}
   unlockedState: {fileID: 59320443833599447}
 --- !u!114 &8454524234534152905

@@ -6,6 +6,7 @@ public abstract class DestroyableObject : MonoBehaviour
 {
     [SerializeField] private int health = 1;
     [SerializeField] private GameObject lockedLabel;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     public int Health { get { return health; } }
 
@@ -17,6 +18,7 @@ public abstract class DestroyableObject : MonoBehaviour
     {
         SetLockedLabelVisible(false);
         shaker = GetComponent<Shaker>();
+        spriteRenderer.color = RoomShell.Instance.attackableColor;
     }
 
     public virtual void SetLockedLabelVisible(bool isVisible)

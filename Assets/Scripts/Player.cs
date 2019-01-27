@@ -22,6 +22,7 @@ public class Player : SingletonComponent<Player>
     [SerializeField] private TextMeshProUGUI lockNumberLabel;
     [SerializeField] private GameObject body;
     [SerializeField] private GameObject crosshairs;
+    [SerializeField] private PlayerBulletTrail bulletTrailPrefab;
 
     private int LockNumber
     {
@@ -143,6 +144,9 @@ public class Player : SingletonComponent<Player>
             {
                 if (enemy != null)
                 {
+                    var newTrailPrefab = Instantiate(bulletTrailPrefab, transform.position, Quaternion.identity);
+                    newTrailPrefab.Init(enemy.transform);
+
                     enemy.Damage();
                 }
                 bool lastShot = shotIdx + 1 == enemyLockPair.Value.shots;

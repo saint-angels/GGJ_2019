@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 20
   lockedLabel: {fileID: 2622463371684391008}
+  spriteRenderer: {fileID: 2622463371280264434}
   movementSpeed: 5
 --- !u!61 &2622463370811774857
 BoxCollider2D:
@@ -121,8 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 2622463371280264437}
-  shakeDuration: 0.5
-  decreaseFactor: 2
 --- !u!1 &2622463371280264436
 GameObject:
   m_ObjectHideFlags: 0

@@ -120,54 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &49740596
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 49740598}
-  - component: {fileID: 49740597}
-  m_Layer: 0
-  m_Name: MapGenerator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &49740597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49740596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
-  m_Script: {fileID: 11500000, guid: 47b3efe5a497ce147a9093be39728698, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 6971813029419933272, guid: c1d126534a3aee84ca6df6be1eef7303,
-    type: 3}
-  roomCount: 30
-  shouldGenerate: 0
---- !u!4 &49740598
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49740596}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &82385731
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +436,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1262006434
 GameObject:
@@ -519,7 +471,7 @@ Transform:
   - {fileID: 1859075747}
   - {fileID: 1377412294}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1262006436
 MonoBehaviour:
@@ -539,6 +491,8 @@ MonoBehaviour:
   lockNumberLabel: {fileID: 1892496665}
   body: {fileID: 1859075745}
   crosshairs: {fileID: 1609127026}
+  bulletTrailPrefab: {fileID: 4259290929689026897, guid: dfddddceda51cdb4fa7598f9c4ebb192,
+    type: 3}
 --- !u!50 &1262006438
 Rigidbody2D:
   serializedVersion: 4
@@ -905,7 +859,7 @@ Transform:
   m_Children:
   - {fileID: 82385732}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1864493719
 MonoBehaviour:
@@ -967,6 +921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c9b4ec19ed17e04da7020e953e5a580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackableColor: {r: 0.9921569, g: 0.32941177, b: 0.3019608, a: 1}
   roomPrefabs:
   - {fileID: 1361336042530762705, guid: 600af2829255b9744bcf55de9e050adb, type: 3}
   - {fileID: 744208761247181022, guid: 09d26a19f6267054cba1362617b3ddf0, type: 3}
