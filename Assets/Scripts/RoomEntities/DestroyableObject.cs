@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[SelectionBase]
 public abstract class DestroyableObject : MonoBehaviour
 {
     [SerializeField] private int health = 1;

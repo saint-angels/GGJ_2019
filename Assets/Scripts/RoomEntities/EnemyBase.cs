@@ -2,27 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBase : DestroyableObject
+public abstract class EnemyBase : DestroyableObject
 {
-    [SerializeField] private float movementSpeed = 5f;
+    [SerializeField] private float targetPositionSelectionCooldown = .5f;
 
-    private PolyNavAgent agent;
+    protected PolyNavAgent agent;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         agent = GetComponent<PolyNavAgent>();
+        StartCoroutine(ChooseTargetPositionRoutine());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        agent.SetDestination(Player.Instance.transform.position);
-    }
+    protected abstract void ChooseTargetPosition();
 
-    protected override void OnHealthDepleted()
+    IEnumerator ChooseTargetPositionRoutine()
     {
-        Destroy(gameObject);
+        while (true)
+        {
+            ChooseTargetPosition();
+            yield return new WaitForSeconds(targetPositionSelectionCooldown);
+        }
     }
 }

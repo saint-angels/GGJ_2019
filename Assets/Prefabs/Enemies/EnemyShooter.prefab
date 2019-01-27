@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2622463370811774903}
-  - component: {fileID: 2622463370811774902}
   - component: {fileID: 2622463370811774857}
   - component: {fileID: 2622463370811774900}
   - component: {fileID: 8089662062276273923}
+  - component: {fileID: 5091997223793568919}
   m_Layer: 0
-  m_Name: EnemyTest
+  m_Name: EnemyShooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,23 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2622463370811774902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2622463370811774856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
-  m_Script: {fileID: 11500000, guid: cef23d40d2bec7141aab91f00023c7b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 20
-  lockedLabel: {fileID: 2622463371684391008}
-  spriteRenderer: {fileID: 2622463371280264434}
-  movementSpeed: 5
 --- !u!61 &2622463370811774857
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -122,6 +105,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 2622463371280264437}
+--- !u!114 &5091997223793568919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2622463370811774856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: ae137104f6ead5742a709bbce502d49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  lockedLabel: {fileID: 2622463371684391008}
+  spriteRenderer: {fileID: 2622463371280264434}
+  targetPositionSelectionCooldown: 0.5
+  targetPlayerDistance: 3
 --- !u!1 &2622463371280264436
 GameObject:
   m_ObjectHideFlags: 0

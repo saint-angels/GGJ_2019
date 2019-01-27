@@ -29,11 +29,12 @@ public class Shaker : MonoBehaviour
             targetTransform.localPosition = originalPos + randomVector3 * shakeAmount;
 
             shakeDuration -= Time.deltaTime * decreaseFactor;
-        }
-        else
-        {
-            shakeDuration = 0f;
-            targetTransform.localPosition = originalPos;
+
+            if (shakeDuration <= 0)
+            {
+                shakeDuration = 0f;
+                targetTransform.localPosition = originalPos;
+            }
         }
     }
 

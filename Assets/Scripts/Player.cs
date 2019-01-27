@@ -24,6 +24,8 @@ public class Player : SingletonComponent<Player>
     [SerializeField] private GameObject crosshairs;
     [SerializeField] private PlayerBulletTrail bulletTrailPrefab;
 
+    public Vector2 Position2 { get { return new Vector2(transform.position.x, transform.position.y); } }
+
     private int LockNumber
     {
         get
@@ -71,10 +73,10 @@ public class Player : SingletonComponent<Player>
         {
             Vector3 translation = new Vector3(translationX, translationY, 0);
             transform.Translate(translation.normalized * Time.deltaTime * movementSpeed);
-            float clampedX = Mathf.Clamp(transform.position.x, -4.2f, 4.2f);
-            float clampedY = Mathf.Clamp(transform.position.y, -4.2f, 4.2f);
-            transform.position = new Vector3(clampedX, clampedY, 0);
         }
+        float clampedX = Mathf.Clamp(transform.position.x, -4.2f, 4.2f);
+        float clampedY = Mathf.Clamp(transform.position.y, -4.2f, 4.2f);
+        transform.position = new Vector3(clampedX, clampedY, 0);
 
 
         //Aiming
